@@ -4,7 +4,7 @@ const ReplacePlugin = require('webpack-plugin-replace');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-    entry: ['babel-polyfill', './client-app/src/index.jsx'],
+    entry: ['babel-polyfill', './client-app/index.jsx'],
     target: 'web',
     resolve: {
         extensions: ['.js', '.jsx'],
@@ -58,7 +58,7 @@ module.exports = {
                 test: /\.(png|jpg|gif)$/,
                 use: [
                     {
-                        loader: 'url-loader',
+                        loader: 'resolve-url-loader',
                         options: {
                             fallback: 'file-loader',
                             name: '[name].[ext]',
@@ -85,7 +85,7 @@ module.exports = {
     devtool: 'cheap-module-eval-source-map',
     plugins: [
         new HtmlWebpackPlugin({
-            template: './client-app/src/template.html',
+            template: './client-app/template.html',
             filename: './index.html',
         }),
         new ReplacePlugin({
