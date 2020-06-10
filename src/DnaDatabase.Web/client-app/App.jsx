@@ -1,70 +1,28 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {createUseStyles} from 'react-jss';
+import Header from './components/Header';
+import Body from './components/Body';
+import appStyles from './styles/app';
 
-const logo = 'favicon.ico';
-const useStyles = createUseStyles({
-  '@global': {
-    body: {
-      margin: 0,
-      fontFamily: [
-        '-apple-system',
-        'BlinkMacSystemFont',
-        'Segoe UI',
-        'Roboto',
-        'Oxygen',
-        'Ubuntu',
-        'Cantarell',
-        'Fira Sans',
-        'Droid Sans',
-        'Helvetica Neue',
-        'sans-serif',
-      ]
-    },
-  },
-  app: {
-    textAlign: 'center'
-  },
-  appLogo: {
-    height: '40vmin',
-    pointerEvents: 'none'
-  },
-  appHeader: {
-    backgroundColor: '#282c34',
-    minHeight: '100vh',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontSize: 'calc(10px + 2vmin)',
-    color: 'white'
-  },
-  '@media (prefers-reduced-motion: no-preference)': {
-    appLogo: {
-      animation: 'App-logo-spin infinite 20s linear'
-    }
-  },
-  appLink: {
-    color: '#61dafb'
-  },
-  '@keyframes App-logo-spin': {
-    from: {
-      transform: 'rotate(0deg)'
-    },
-    to: {
-      transform: 'rotate(360deg)'
-    }
-  }
-});
+const logo = 'assets/logo512.png';
+const useStyles = createUseStyles(appStyles);
 
-function App() {
+const App = () => {
   const classes = useStyles();
+  const [tabValue, setTabValue] = useState(0);
   return (
     <div className={classes.app}>
-      <header className={classes.appHeader}>
-        <img src={logo} className={classes.appLogo} alt="logo" />
+      <Header
+        imageUrl={logo}
+        tabValue={tabValue}
+        onTabChange={(value) => setTabValue(value)}
+      />
+      <Body value={tabValue} index={0}>
         <p>
           Hello, world!
         </p>
+      </Body>
+      <Body value={tabValue} index={1}>
         <a
           className={classes.appLink}
           href="https://reactjs.org"
@@ -73,7 +31,7 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </Body>
     </div>
   );
 }
