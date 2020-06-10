@@ -1,6 +1,6 @@
 import React from 'react';
 import {createUseStyles} from 'react-jss';
-import { AppBar, Grid, Paper, Tab, Tabs, Typography } from '@material-ui/core';
+import { Grid, Paper, Tab, Tabs, Typography } from '@material-ui/core';
 import headerStyles from '../styles/header';
 
 const tabs = [
