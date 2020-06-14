@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import {createUseStyles} from 'react-jss';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import {fetchMutations} from '../redux/actions';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -18,27 +19,18 @@ const headers = [
     { id: 'mutant', label: 'Mutant Allele', minWidth: 120 },
     { id: 'gene', label: 'Name', minWidth: 120 },
     { id: 'variantFunction', label: 'Variant Function', minWidth: 180 },
-    { id: 'aachange', label: 'AAChange', minWidth: 250 },
-    { id: 'dnsnpId', label: 'dnSNP ID', minWidth: 180 }
-];
-
-const rows = [
-    {
-        chromosome: 1,
-        start: 1340274,
-        end: 1340274,
-        reference: 'T',
-        mutant: 'C',
-        gene: 'DVL1',
-        variantFunction: 'nonsynonymous SNV',
-        aachange: 'DVL1:NM_004421:exon7:c.A742G:p.N248D',
-        dnsnpId: null
-    }
+    { id: 'aaChange', label: 'AAChange', minWidth: 250 },
+    { id: 'dbsnp', label: 'dbSNP ID', minWidth: 180 }
 ];
 
 const MutationsTable = () => {
+    const dispatch = useDispatch();
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(25);
+    const rows = useSelector(state => state.dna);
+    useEffect(() => {
+      dispatch(fetchMutations());
+    }, []);
 
     const handlePageChange = (event, newPage) => setPage(newPage);
 
