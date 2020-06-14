@@ -7,7 +7,7 @@ namespace DnaDatabase.Web.Services
 {
     public interface IMutationService
     {
-        Task<MutationInformation> GetMutation(string id);
-        Task<IEnumerable<MutationInformation>> GetAllMutations();
+        Task<MutationDto> GetMutation(string id);
+        IAsyncEnumerable<MutationDto> GetAllMutations();
     }
 }

@@ -6,7 +6,7 @@ namespace DnaDatabase.Web.Repositories
 {
     public interface IMutationRepository
     {
-        Task<MutationDto> Get(string chromosome, int start, int end);
-        Task<IEnumerable<MutationDto>> GetMany();
+        Task<MutationDto> Get(string id);
+        IAsyncEnumerable<MutationDto> GetMany();
     }
 }

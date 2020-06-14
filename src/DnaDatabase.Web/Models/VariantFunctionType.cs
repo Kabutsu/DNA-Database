@@ -1,5 +1,9 @@
-﻿namespace DnaDatabase.Web.Models
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
+namespace DnaDatabase.Web.Models
 {
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum VariantFunctionType
     {
         Undefined,
