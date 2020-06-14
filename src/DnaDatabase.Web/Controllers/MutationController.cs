@@ -13,17 +13,12 @@ namespace DnaDatabase.Web.Controllers
     [Produces("application/json")]
     [ApiExplorerSettings(GroupName ="v1")]
     [Route("api/v1/[controller]")]
-    public class MutationController : Controller
+    public class MutationController : ControllerBase
     {
         private readonly IMutationService _mutationService;
 
         public MutationController(IMutationService mutationService)
             => _mutationService = mutationService;
-
-        public IActionResult Index()
-        {
-            return View();
-        }
 
         [HttpGet("/mutation/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
