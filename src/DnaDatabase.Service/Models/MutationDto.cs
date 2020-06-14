@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DnaDatabase.Service.Models
 {
@@ -13,7 +10,7 @@ namespace DnaDatabase.Service.Models
         public string Reference { get; }
         public string Mutant { get; }
         public string Gene { get; }
-        public VariantFunctionType VariantFunction { get; }
+        public string VariantFunction { get; }
         public string AAChange { get; }
         public string DBSNP { get; }
 
@@ -34,22 +31,9 @@ namespace DnaDatabase.Service.Models
             Reference = reference;
             Mutant = mutant;
             Gene = gene;
-            VariantFunction = variantFunction;
+            VariantFunction = variantFunction.ToString();
             AAChange = aaChange;
             DBSNP = dbSnp;
         }
-
-        public MutationInformation Convert()
-            => new MutationInformation(
-                $"{Chromosome}:{Start}:{End}",
-                Chromosome,
-                Start,
-                End,
-                Reference,
-                Mutant,
-                Gene,
-                VariantFunction,
-                AAChange,
-                DBSNP);
     }
 }
