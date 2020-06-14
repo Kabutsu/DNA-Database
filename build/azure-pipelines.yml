@@ -38,6 +38,11 @@ jobs:
 
   - task: VSBuild@1
     inputs:
-      solution: '../DnaDatabase.sln'
+      solution: '../src/DnaDatabase.Web/DnaDatabase.Web.csproj'
+      vsVersion: 'latest'
+
+  - task: VSBuild@1
+    inputs:
+      solution: '../src/DnaDatabase.Service/DnaDatabase.Service.csproj'
       vsVersion: 'latest'
 
