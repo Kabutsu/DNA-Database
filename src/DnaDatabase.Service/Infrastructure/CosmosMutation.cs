@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace DnaDatabase.Service.Infrastructure
 {
-    internal class CosmosMutation
+    internal sealed class CosmosMutation
     {
         [JsonProperty("id")]
         public string Chromosome { get; }
@@ -16,5 +16,25 @@ namespace DnaDatabase.Service.Infrastructure
         public VariantFunctionType VariantFunction { get; }
         public string AAChange { get; }
         public string DBSNP { get; }
+
+        public CosmosMutation(
+            string chromosome,
+            string range,
+            char reference,
+            char mutant,
+            string gene,
+            VariantFunctionType variantFunction,
+            string aachange,
+            string dbsnp)
+        {
+            Chromosome = chromosome;
+            Range = range;
+            Reference = reference;
+            Mutant = mutant;
+            Gene = gene;
+            VariantFunction = variantFunction;
+            AAChange = aachange;
+            DBSNP = dbsnp;
+        }
     }
 }

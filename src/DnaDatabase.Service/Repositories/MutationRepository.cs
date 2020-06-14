@@ -39,13 +39,26 @@ namespace DnaDatabase.Service.Repositories
         public async IAsyncEnumerable<MutationDto> GetMany()
         {
             var query = new QueryDefinition("SELECT * FROM c");
-            var mutations = _container
-                .GetItemQueryIterator<CosmosMutation>(query)
-                .ToAsyncEnumerable();
-                
-            await foreach (var mutation in mutations)
+            var itemQueryIterator = _container
+                .GetItemQueryIterator<CosmosMutation>(query);
+
+            var response = _container.GetItemQueryStreamIterator(query);
+            while (response.HasMoreResults)
             {
-                yield return Hydrate(mutation);
+                var mutant = await response.ReadNextAsync();
+                var c = "c";
+                var readMutant = mutant.Content.TryGetCosmosMutationAsync();
+                var d = "d";
+            }
+
+            while (itemQueryIterator.HasMoreResults)
+            {
+                foreach (var mutation in await itemQueryIterator.ReadNextAsync())
+                {
+                    var a = "a";
+                    var b = "b";
+                    yield return Hydrate(mutation);
+                }
             }
         }
 
@@ -55,7 +68,10 @@ namespace DnaDatabase.Service.Repositories
                     new PartitionKey(range))).Resource;
 
         private static MutationDto Hydrate(CosmosMutation mutation)
-            => new MutationDto(
+        {
+            var splitId = mutation.Range.Split(":");
+
+            return new MutationDto(
                 int.Parse(mutation.Chromosome),
                 int.Parse(mutation.Range.Split(":")[0]),
                 int.Parse(mutation.Range.Split(":")[1]),
@@ -65,6 +81,7 @@ namespace DnaDatabase.Service.Repositories
                 mutation.VariantFunction,
                 mutation.AAChange,
                 mutation.DBSNP);
+        }
     }
 
     internal class MutationsDbOptions
