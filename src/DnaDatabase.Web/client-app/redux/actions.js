@@ -1,4 +1,5 @@
 import Fetcher from '../lib/fetcher';
+import {DnaDatabaseService} from '../lib/constants/endpoints';
 import {
     FETCH_MUTATIONS_SUCCESS,
     FETCH_MUTATIONS_FAILURE,
@@ -16,7 +17,7 @@ export const fetchMutationsFailure = (error) => ({
 
 export const fetchMutations = () => async (dispatch, getState) => {
     dispatch({ type: FETCHING_MUTATIONS });
-    const mutationsResponse = await Fetcher.get('https://localhost:6001/mutations/all');
+    const mutationsResponse = await Fetcher.get(DnaDatabaseService.AllMutations);
     const mutations = mutationsResponse.ok
         ? await mutationsResponse.json()
         : mutationsResponse.status;

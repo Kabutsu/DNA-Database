@@ -18,7 +18,7 @@ const headers = [
     { id: 'end', label: 'End', minWidth: 120 },
     { id: 'reference', label: 'Reference Allele', minWidth: 120 },
     { id: 'mutant', label: 'Mutant Allele', minWidth: 120 },
-    { id: 'gene', label: 'Name', minWidth: 120 },
+    { id: 'gene', label: 'Gene', minWidth: 120 },
     { id: 'variantFunction', label: 'Variant Function', minWidth: 180 },
     { id: 'aaChange', label: 'AAChange', minWidth: 250 },
     { id: 'dbsnp', label: 'dbSNP ID', minWidth: 180 }
