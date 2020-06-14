@@ -1,33 +1,33 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace DnaDatabase.Web.Models
+namespace DnaDatabase.Service.Models
 {
-    public class MutationInformation
+    public class MutationDto
     {
-        public string Id { get; }
         public int Chromosome { get; }
         public Int32 Start { get; }
         public Int32 End { get; }
-        public char Reference { get; }
-        public char Mutant { get; }
+        public string Reference { get; }
+        public string Mutant { get; }
         public string Gene { get; }
         public VariantFunctionType VariantFunction { get; }
         public string AAChange { get; }
         public string DBSNP { get; }
 
-        public MutationInformation(
-            string id,
+        public MutationDto(
             int chromosome,
             Int32 start,
             Int32 end,
-            char reference,
-            char mutant,
+            string reference,
+            string mutant,
             string gene,
             VariantFunctionType variantFunction,
             string aaChange,
             string dbSnp)
         {
-            Id = id;
             Chromosome = chromosome;
             Start = start;
             End = end;
@@ -38,5 +38,18 @@ namespace DnaDatabase.Web.Models
             AAChange = aaChange;
             DBSNP = dbSnp;
         }
+
+        public MutationInformation Convert()
+            => new MutationInformation(
+                $"{Chromosome}:{Start}:{End}",
+                Chromosome,
+                Start,
+                End,
+                Reference,
+                Mutant,
+                Gene,
+                VariantFunction,
+                AAChange,
+                DBSNP);
     }
 }

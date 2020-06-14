@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DnaDatabase.Web.Models;
-using DnaDatabase.Web.Repositories;
+using DnaDatabase.Service.Models;
+using DnaDatabase.Service.Repositories;
 
-namespace DnaDatabase.Web.Services
+namespace DnaDatabase.Service.Services
 {
     public class MutationService : IMutationService
     {

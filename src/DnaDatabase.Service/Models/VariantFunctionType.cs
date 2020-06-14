@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace DnaDatabase.Web.Models
+namespace DnaDatabase.Service.Models
 {
     [JsonConverter(typeof(StringEnumConverter))]
     public enum VariantFunctionType

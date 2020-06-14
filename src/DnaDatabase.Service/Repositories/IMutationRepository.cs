@@ -1,8 +1,8 @@
-﻿using DnaDatabase.Web.Models;
+﻿using DnaDatabase.Service.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace DnaDatabase.Web.Repositories
+namespace DnaDatabase.Service.Repositories
 {
     public interface IMutationRepository
     {
