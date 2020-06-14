@@ -38,6 +38,6 @@ jobs:
 
   - task: MSBuild@1
     inputs:
-      solution: 'DnaDatabase.sln'
+      solution: '../**.sln'
       msbuildVersion: 'latest'
 
