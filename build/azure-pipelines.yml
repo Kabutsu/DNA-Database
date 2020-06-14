@@ -36,13 +36,8 @@ jobs:
       restoreSolution: '../DnaDatabase.sln'
       includeNuGetOrg: true
 
-  - task: VSBuild@1
+  - task: MSBuild@1
     inputs:
-      solution: '../src/DnaDatabase.Web/DnaDatabase.Web.csproj'
-      vsVersion: 'latest'
-
-  - task: VSBuild@1
-    inputs:
-      solution: '../src/DnaDatabase.Service/DnaDatabase.Service.csproj'
+      solution: '../DnaDatabase.sln'
       vsVersion: 'latest'
 
