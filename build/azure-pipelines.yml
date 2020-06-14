@@ -10,7 +10,7 @@ trigger:
     - task/*
     - master
   paths:
-    exlude:
+    exclude:
     - README.md
 
 pool:
