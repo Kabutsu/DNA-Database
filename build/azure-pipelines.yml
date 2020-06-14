@@ -14,7 +14,7 @@ trigger:
     - README.md
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-latest'
 
 jobs:
 - job: build
