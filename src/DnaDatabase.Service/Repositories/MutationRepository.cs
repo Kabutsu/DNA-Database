@@ -39,15 +39,13 @@ namespace DnaDatabase.Service.Repositories
         public async IAsyncEnumerable<MutationDto> GetMany()
         {
             var query = new QueryDefinition("SELECT * FROM c");
-            var itemQueryIterator = _container
-                .GetItemQueryIterator<CosmosMutation>(query);
+            var mutations = _container
+                .GetItemQueryIterator<CosmosMutation>(query)
+                .ToAsyncEnumerable();
 
-            while (itemQueryIterator.HasMoreResults)
+            await foreach (var mutation in mutations)
             {
-                foreach (var mutation in await itemQueryIterator.ReadNextAsync())
-                {
-                    yield return Hydrate(mutation);
-                }
+                yield return Hydrate(mutation);
             }
         }
 
