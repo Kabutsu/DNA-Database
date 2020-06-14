@@ -10,6 +10,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const headers = [
     { id: 'chromosome', label: 'Chromosome', minWidth: 80 },
@@ -27,6 +28,7 @@ const MutationsTable = () => {
     const dispatch = useDispatch();
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(25);
+    const isFetching = useSelector(state => state.isFetching);
     const rows = useSelector(state => state.dna);
     useEffect(() => {
       dispatch(fetchMutations());
@@ -40,50 +42,54 @@ const MutationsTable = () => {
     };
 
     return (
-        <Paper>
-          <TableContainer>
-            <Table stickyHeader aria-label="sticky table">
-              <TableHead>
-                <TableRow>
-                  {headers.map((header) => (
-                    <TableCell
-                      key={header.id}
-                      align={header.align}
-                      style={{ minWidth: header.minWidth }}
-                    >
-                      {header.label}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                  return (
-                    <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                      {headers.map((header) => {
-                        const value = row[header.id];
-                        return (
-                          <TableCell key={header.id} align={header.align}>
-                            {header.format && typeof value === 'number' ? header.format(value) : value}
-                          </TableCell>
-                        );
-                      })}
-                    </TableRow>
-                  );
-                })}
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <TablePagination
-            rowsPerPageOptions={[10, 25, 100]}
-            component="div"
-            count={rows.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onChangePage={handlePageChange}
-            onChangeRowsPerPage={handleChangeRowsPerPage}
-          />
-        </Paper>
+      isFetching
+        ? (<CircularProgress />)
+        : (
+          <Paper>
+            <TableContainer>
+              <Table stickyHeader aria-label="sticky table">
+                <TableHead>
+                  <TableRow>
+                    {headers.map((header) => (
+                      <TableCell
+                        key={header.id}
+                        align={header.align}
+                        style={{ minWidth: header.minWidth }}
+                      >
+                        {header.label}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                    return (
+                      <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                        {headers.map((header) => {
+                          const value = row[header.id];
+                          return (
+                            <TableCell key={header.id} align={header.align}>
+                              {header.format && typeof value === 'number' ? header.format(value) : value}
+                            </TableCell>
+                          );
+                        })}
+                      </TableRow>
+                    );
+                  })}
+                </TableBody>
+              </Table>
+            </TableContainer>
+            <TablePagination
+              rowsPerPageOptions={[10, 25, 100]}
+              component="div"
+              count={rows.length}
+              rowsPerPage={rowsPerPage}
+              page={page}
+              onChangePage={handlePageChange}
+              onChangeRowsPerPage={handleChangeRowsPerPage}
+            />
+          </Paper>
+        )
       );
 };
 
