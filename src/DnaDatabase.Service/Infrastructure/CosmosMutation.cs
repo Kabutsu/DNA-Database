@@ -10,8 +10,8 @@ namespace DnaDatabase.Service.Infrastructure
         [JsonProperty("partitionKey")]
         public string Range { get; }
 
-        public char Reference { get; }
-        public char Mutant { get; }
+        public string Reference { get; }
+        public string Mutant { get; }
         public string Gene { get; }
         public VariantFunctionType VariantFunction { get; }
         public string AAChange { get; }
@@ -20,8 +20,8 @@ namespace DnaDatabase.Service.Infrastructure
         public CosmosMutation(
             string chromosome,
             string range,
-            char reference,
-            char mutant,
+            string reference,
+            string mutant,
             string gene,
             VariantFunctionType variantFunction,
             string aachange,

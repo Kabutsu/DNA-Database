@@ -10,8 +10,8 @@ namespace DnaDatabase.Service.Models
         public int Chromosome { get; }
         public Int32 Start { get; }
         public Int32 End { get; }
-        public char Reference { get; }
-        public char Mutant { get; }
+        public string Reference { get; }
+        public string Mutant { get; }
         public string Gene { get; }
         public VariantFunctionType VariantFunction { get; }
         public string AAChange { get; }
@@ -21,8 +21,8 @@ namespace DnaDatabase.Service.Models
             int chromosome,
             Int32 start,
             Int32 end,
-            char reference,
-            char mutant,
+            string reference,
+            string mutant,
             string gene,
             VariantFunctionType variantFunction,
             string aaChange,
