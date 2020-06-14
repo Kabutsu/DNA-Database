@@ -1,11 +1,10 @@
 ﻿using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using DnaDatabase.Service.Models;
 using DnaDatabase.Service.Repositories;
 using DnaDatabase.Service.Services;
 
-namespace DnaDatabase.Service.Infrastructure
+namespace DnaDatabase.Service.Middleware
 {
     public static class DependencyInjectionExtension
     {
